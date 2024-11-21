@@ -1,11 +1,14 @@
 import express from "express";
 import { insertUser } from "../models/user/UserModel.js";
+import { hashPassword } from "../utils/bcryptjs.js";
 const router=express.Router()
 //User signup
 
 router.post("/",async (req,res,next)=>{
 try {
-    //
+    //encrypt the password
+    req.body.password=hashPassword(req.body.password)
+    console.log(req.body.password)
     //
     const user = await insertUser(req.body)
     ///
