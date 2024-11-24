@@ -1,0 +1,22 @@
+.input-icon {
+    position: relative;
+  }
+  
+  .input-icon-left {
+    position: absolute;
+    top: 50%;
+    left: 10px; /* Adjust icon position inside input */
+    transform: translateY(-50%);
+    color: #6c757d;
+    font-size: 1.2rem;
+  }
+  
+  .form-input {
+    margin-left: 35px; /* Leave space for the icon */
+    height: 50px; /* Consistent input height */
+  }
+  
+  .form-input::placeholder {
+    color: #adb5bd; /* Optional: Placeholder color */
+  }
+  

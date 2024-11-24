@@ -2,15 +2,21 @@ import './App.css'
 import { ToastContainer, toast } from 'react-toastify'
 import { Routes, Route } from 'react-router-dom'
 import Login from './pages/Login'
-import signUp from './pages/signUp'
+import Signup from './pages/Signup';
+import DefaultLayout from './components/layout/DefaultLayout';
+
+
+
 function App() {
-toast("hello boi")
 return (
 
   <div className='wrapper'>
     <Routes>
-   <Route path="/" element={<Login/>}/> 
-   <Route path="/signUp" element={<signUp/>}/> 
+      <Route path='/' element={<DefaultLayout/>}>
+
+   <Route index element={<Login/>}/> 
+   <Route path="signup" element={<Signup />}/> 
+      </Route>
 
     </Routes>
     <ToastContainer />
