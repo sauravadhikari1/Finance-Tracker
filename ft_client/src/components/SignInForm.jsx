@@ -1,44 +1,22 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Button, Card, Form } from "react-bootstrap";
-import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
+import {  FaEnvelope, FaLock } from "react-icons/fa";
 import CustomInput from "./CustomInput";// Import the reusable input component
 import "../css/Signup.css";
-import { toast } from "react-toastify";
-import {postNewUser} from "../helpers/axiosHelper" 
 import { useForm } from "../customHooks/useForm";
-
-const SignUpForm = () => {
-// const [form,setForm]=useState({});
-//   const handleOnChange=e=>{
-//     const{name,value}=e.target
-//     setForm({
-//       ...form,
-//       [name]:value
-//     })
-//   }
-
-const initialState={
-  name:"",
+initialState={
   email:"",
-  password:"",
-  confirmPassword:"",
+  password:""
 }
-
-
-const {form,setForm,handleOnChange}=useForm({initialState})
-
-  const handleOnSubmit= async (e)=>{
+const SignInForm = () => {
+  const {form,handleOnChange}=useForm(initialState)
+  
+  const handleOnSubmit=(e)=>{
     e.preventDefault()
-    const{confirmPassword, ...rest}=form
-    if(confirmPassword!== rest.password){
-      return toast.error("password do not match")
-    }
-    
-    const {status,message} = await postNewUser(rest)
-    toast[status](message)
-    status==="success" && setForm(initialState)
-    // console.log(form)
+    console.log(form)
+
   }
+ 
   return (
     <div className="signup-page">
       <Container>
@@ -52,15 +30,7 @@ const {form,setForm,handleOnChange}=useForm({initialState})
                 </p>
 
                 <Form onSubmit={handleOnSubmit}>
-                  <CustomInput
-                    type="text"
-                    placeholder="Full Name"
-                    icon={FaUser}
-                    controlId="formName"
-                    name="name"
-                    onChange={handleOnChange}
-                    value={form.name}
-                  />
+                 
                   <CustomInput
                     type="email"
                     placeholder="Email Address"
@@ -68,7 +38,6 @@ const {form,setForm,handleOnChange}=useForm({initialState})
                     controlId="formEmail"
                     name="email"
                     onChange={handleOnChange}
-                    value={form.email}
 
                   />
                   <CustomInput
@@ -78,28 +47,18 @@ const {form,setForm,handleOnChange}=useForm({initialState})
                     controlId="formPassword"
                     name="password"
                     onChange={handleOnChange}
-                    value={form.password}
 
                   />
-                  <CustomInput
-                    type="password"
-                    placeholder="Confirm Password"
-                    icon={FaLock}
-                    controlId="formConfirmPassword"
-                    name="confirmPassword"
-                    onChange={handleOnChange}
-                    value={form.confirmPassword}
-
-                  />
+                  
 
                   <Button variant="primary" type="submit" className="w-100 signup-button">
-                    Sign Up
+                    Log In
                   </Button>
                 </Form>
 
                 
                 <p className="text-center mt-3 text-muted">
-                  Already have an account? <a href="/">Login</a>
+                  Don't have an account? <a href="/signup">Sign Up</a>
                 </p>
               </Card.Body>
             </Card>
@@ -108,6 +67,8 @@ const {form,setForm,handleOnChange}=useForm({initialState})
       </Container>
     </div>
   );
-};
+  
+  
 
-export default SignUpForm;
+}
+export default SignInForm

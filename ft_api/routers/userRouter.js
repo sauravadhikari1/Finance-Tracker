@@ -1,5 +1,5 @@
 import express from "express";
-import { insertUser } from "../models/user/UserModel.js";
+import { getUserByEmail, insertUser } from "../models/user/UserModel.js";
 import { hashPassword } from "../utils/bcryptjs.js";
 const router=express.Router()
 //User signup
@@ -31,5 +31,28 @@ try {
 }
 })
 
+
+router.post("/login", async (req,res,next)=>{
+    try {
+        const {email,password}=req.body
+        if(email&&password){
+            const user= await getUserByEmail(email)
+            res.json({
+                status:"success",
+                message:"logging",
+                user
+            })
+            return
+        }
+        res.status(401).json({
+            error:"invalid credentials"
+        })
+        // console.log(email,password)
+    } catch (error) {
+        res.status(500).json({
+            error:error.message
+        })
+    }
+})
 
 export default router;

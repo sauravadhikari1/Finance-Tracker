@@ -14,3 +14,13 @@ Content-Type: application/json
     "email":"a@a44.com",
     "password":"123#$"
 }
+
+###Login user
+POST  http://localhost:8000/api/v1/users/login
+Content-Type: application/json
+
+
+{
+    "email":"users@email.com",
+    "password":"sdsd"
+}

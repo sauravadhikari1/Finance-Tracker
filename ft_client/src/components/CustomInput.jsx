@@ -3,7 +3,7 @@ import { Form } from "react-bootstrap";
 import PropTypes from "prop-types";
 import "../css/CustomInput.css";
 
-const CustomInput = ({ type, placeholder, icon: Icon, controlId,name,onChange }) => {
+const CustomInput = ({ type, placeholder, icon: Icon, controlId,name,onChange,value }) => {
   return (
     <Form.Group controlId={controlId} className="mb-3">
       <div className="input-icon">
@@ -14,6 +14,7 @@ const CustomInput = ({ type, placeholder, icon: Icon, controlId,name,onChange })
           className="form-input"
           name={name}
           onChange={onChange}
+          value={value}
         />
       </div>
     </Form.Group>
