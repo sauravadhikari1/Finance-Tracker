@@ -1,20 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Button, Card, Form } from "react-bootstrap";
+import { toast } from "react-toastify";
 import {  FaEnvelope, FaLock } from "react-icons/fa";
 import CustomInput from "./CustomInput";// Import the reusable input component
 import "../css/Signup.css";
 import { useForm } from "../customHooks/useForm";
-initialState={
+import { loginUser } from "../helpers/axiosHelper";
+import { useUser } from "../context/UserContext";
+import { useNavigate } from "react-router-dom";
+const initialState={
   email:"",
   password:""
 }
 const SignInForm = () => {
+const {user, setUser}=useUser()
+const navigate=useNavigate()
+
   const {form,handleOnChange}=useForm(initialState)
+
+  useEffect(()=>{
+    user?._id && navigate("/dashboard")
+  },[user?._id,navigate])
   
-  const handleOnSubmit=(e)=>{
+  const handleOnSubmit=async (e)=>{
     e.preventDefault()
     console.log(form)
 
+    const {status,message,user, accessJWT} = await loginUser(form)
+    toast[status](message)
+    // console.log (user,accessJWT)
+    setUser(user)
+    localStorage.setItem("accessJWT",accessJWT)
   }
  
   return (

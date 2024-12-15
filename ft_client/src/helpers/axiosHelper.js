@@ -26,3 +26,15 @@ export const postNewUser=(data)=>{
     }
     return apiProcessor(obj)
 }
+
+
+//login user
+export const loginUser=(data)=>{
+    const obj={
+        method:"post",
+        url:rootUrl+"/users/login",
+        data,
+    }
+    return apiProcessor(obj)
+}
+

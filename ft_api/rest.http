@@ -1,9 +1,8 @@
 ###testing api call
 ### User
 ###Get user
-GET http://localhost:8000/
-
-
+GET http://localhost:8000/api/v1/users
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAYS5jb20iLCJpYXQiOjE3MzQyNDcyOTcsImV4cCI6MTczNDMzMzY5N30.j8AfEC7m23ciY7mliiBCrF6T8hAxHsuIVttt-DLwWTE
 ###Post new user
 POST  http://localhost:8000/api/v1/users
 Content-Type: application/json
@@ -11,8 +10,8 @@ Content-Type: application/json
 
 {
     "name":"saurab adhikari",
-    "email":"a@a44.com",
-    "password":"123#$"
+    "email":"a@a.com",
+    "password":"1234"
 }
 
 ###Login user
@@ -21,6 +20,22 @@ Content-Type: application/json
 
 
 {
-    "email":"users@email.com",
-    "password":"sdsd"
+    "email":"a@a.com",
+    "password":"1234"
 }
+
+
+###Post new transaction
+POST  http://localhost:8000/api/v1/transactions
+
+Content-Type: application/json
+
+
+
+{
+    "userID": "63f1a9c2e82e4e09bcee1234", 
+    "amount": 100.50,
+    "date": "2024-12-01T10:30:00Z",
+    "description": "Grocery shopping",
+    "createdAt": "2024-12-01T10:31:00Z"
+  }
