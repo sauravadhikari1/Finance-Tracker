@@ -27,15 +27,12 @@ Content-Type: application/json
 
 ###Post new transaction
 POST  http://localhost:8000/api/v1/transactions
-
 Content-Type: application/json
-
-
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAYS5jb20iLCJpYXQiOjE3MzQyNDcyOTcsImV4cCI6MTczNDMzMzY5N30.j8AfEC7m23ciY7mliiBCrF6T8hAxHsuIVttt-DLwWTE
 
 {
-    "userID": "63f1a9c2e82e4e09bcee1234", 
-    "amount": 100.50,
-    "date": "2024-12-01T10:30:00Z",
-    "description": "Grocery shopping",
-    "createdAt": "2024-12-01T10:31:00Z"
+ "type":"income",
+ "title":"Salary",
+ "amount":"55",
+ "tDate":"2024-02-04"   
   }

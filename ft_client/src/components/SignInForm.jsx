@@ -7,20 +7,22 @@ import "../css/Signup.css";
 import { useForm } from "../customHooks/useForm";
 import { loginUser } from "../helpers/axiosHelper";
 import { useUser } from "../context/UserContext";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 const initialState={
   email:"",
   password:""
 }
 const SignInForm = () => {
+const location=useLocation()
 const {user, setUser}=useUser()
 const navigate=useNavigate()
 
   const {form,handleOnChange}=useForm(initialState)
 
+  const goTO=location?.state?.from?.pathname || "dashboard"
   useEffect(()=>{
-    user?._id && navigate("/dashboard")
-  },[user?._id,navigate])
+    user?._id && navigate(goTO)
+  },[user?._id,navigate,goTO])
   
   const handleOnSubmit=async (e)=>{
     e.preventDefault()

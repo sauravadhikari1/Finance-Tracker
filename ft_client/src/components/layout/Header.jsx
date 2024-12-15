@@ -39,7 +39,7 @@ const Header = () => {
           {/* Right: Login and Sign Up */}
           <Nav className="ms-auto">
           {
-            user._id?(
+            user?._id?(
               <>
               <Button
                 as={Link} // Use Link from react-router-dom

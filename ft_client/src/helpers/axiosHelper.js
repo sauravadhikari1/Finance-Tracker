@@ -1,11 +1,17 @@
 import axios from 'axios'
 const rootUrl="http://localhost:8000/api/v1"
-const apiProcessor= async({method,url,data})=>{
+
+const getAccessJWT=()=>{
+    return localStorage.getItem("accessJWT")
+}
+
+const apiProcessor= async({method,url,data,headers})=>{
 try {
     const response=await axios({
         method,
         url,
-        data
+        data,
+        headers
     })
     return response.data
 } catch (error) {
@@ -34,6 +40,18 @@ export const loginUser=(data)=>{
         method:"post",
         url:rootUrl+"/users/login",
         data,
+    }
+    return apiProcessor(obj)
+}
+
+//get user 
+export const getUser=()=>{
+    const obj={
+        method:"get",
+        url:rootUrl+"/users",
+        headers:{
+            Authorization:getAccessJWT()
+        },
     }
     return apiProcessor(obj)
 }

@@ -89,31 +89,5 @@ router.get("/",auth,(req,res,next)=>{
         })
     }
 })
-router.post("/transactions",async (req,res,next)=>{
-    try {
-        //encrypt the password
-      
-        const transactions = await insertData(req.body)
-        ///
-        // console.log(transactions)
-        transactions?._id?
-        res.json({
-            status:"success",
-            message:"your transactions has been added",
-        }):
-        res.json({
-            status:"error",
-            message:"Error creating user. Please try again later",
-        })
-    
-    } catch (error) {
-        res.json({
-            status:"error",
-            message:error.message
-        })
-    }
-    })
-    
-
 
 export default router;

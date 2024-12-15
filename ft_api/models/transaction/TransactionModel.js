@@ -1,30 +1,11 @@
-import mongoose from 'mongoose'
+import TransactionSchema from "./TransactionSchema.js"
 
-const transactionSchema=mongoose.Schema({
-    userID:{
-        type:String,
-        required:true,
-        // ref:"User"
-    },
-    amount:{
-        type:Number,
-        index:1,
-        required:true,
-
-    },
-    date:{
-        type:Date,
-        required:true
-    },
-    description:{
-        type:String
-    },
-    createdAt:{
-        type:Date
+export const insertTransaction=(obj)=>{
+    return TransactionSchema(obj).save()
     }
-    
-    
-},{
-    timestamps:true,
-})
-export default mongoose.model("Transactions",transactionSchema)//
+
+// export const getTransactionByID=id=>{
+//     return UserSchema.findOne({id})
+//     }
+
+
