@@ -7,7 +7,7 @@ const CustomInput = ({ type, placeholder, icon: Icon, controlId,name,onChange,va
   return (
     <Form.Group controlId={controlId} className="mb-3">
       <div className="input-icon">
-        {Icon && <Icon className="input-icon-left" />}
+        {/* {Icon && <Icon className="input-icon-left" />} */}
         <Form.Control
           type={type}
           placeholder={placeholder}

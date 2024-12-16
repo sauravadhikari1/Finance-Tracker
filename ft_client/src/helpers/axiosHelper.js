@@ -56,3 +56,41 @@ export const getUser=()=>{
     return apiProcessor(obj)
 }
 
+//## transaction api calls
+export const postNewTransaction=(data)=>{
+    const obj={
+        method:"post",
+        url:rootUrl+"/transactions",
+        data,
+        headers:{
+            Authorization:getAccessJWT()
+        }
+    }
+    return apiProcessor(obj)
+}
+
+/// get transactions for the specific user
+
+export const getNewTransaction=()=>{
+    const obj={
+        method:"get",
+        url:rootUrl+"/transactions",
+       
+        headers:{
+            Authorization:getAccessJWT()
+        }
+    }
+    return apiProcessor(obj)
+}
+
+export const deleteTransaction=(data)=>{
+    const obj={
+        method:"delete",
+        url:rootUrl+"/transactions",
+        data,
+        headers:{
+            Authorization:getAccessJWT()
+        }
+    }
+    return apiProcessor(obj)
+}

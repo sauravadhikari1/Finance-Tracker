@@ -2,7 +2,7 @@
 ### User
 ###Get user
 GET http://localhost:8000/api/v1/users
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAYS5jb20iLCJpYXQiOjE3MzQyNDcyOTcsImV4cCI6MTczNDMzMzY5N30.j8AfEC7m23ciY7mliiBCrF6T8hAxHsuIVttt-DLwWTE
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAYS5jb20iLCJpYXQiOjE3MzQzMDI2NzcsImV4cCI6MTczNDM4OTA3N30.khR3PUVv65D1afSjUKAZxZ_3pFImnZLTuP4EcH0njAQ
 ###Post new user
 POST  http://localhost:8000/api/v1/users
 Content-Type: application/json
@@ -28,11 +28,28 @@ Content-Type: application/json
 ###Post new transaction
 POST  http://localhost:8000/api/v1/transactions
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAYS5jb20iLCJpYXQiOjE3MzQyNDcyOTcsImV4cCI6MTczNDMzMzY5N30.j8AfEC7m23ciY7mliiBCrF6T8hAxHsuIVttt-DLwWTE
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAYS5jb20iLCJpYXQiOjE3MzQzMDk2MjIsImV4cCI6MTczNDM5NjAyMn0.P0WZ5ocDa37oIGfghlFjWa8L2iGSJslSLD2e-MptZ9w
 
 {
  "type":"income",
- "title":"Salary",
+ "title":"sale",
  "amount":"55",
  "tDate":"2024-02-04"   
   }
+
+
+
+### Get transactions
+
+GET http://localhost:8000/api/v1/transactions
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAYS5jb20iLCJpYXQiOjE3MzQzMDk2MjIsImV4cCI6MTczNDM5NjAyMn0.P0WZ5ocDa37oIGfghlFjWa8L2iGSJslSLD2e-MptZ9w
+
+
+### Delete transactions
+
+DELETE  http://localhost:8000/api/v1/transactions
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAYS5jb20iLCJpYXQiOjE3MzQzMDk2MjIsImV4cCI6MTczNDM5NjAyMn0.P0WZ5ocDa37oIGfghlFjWa8L2iGSJslSLD2e-MptZ9w
+
+
+
+{"tranid":"675fb91cba876a8c29bbbbf1"}
