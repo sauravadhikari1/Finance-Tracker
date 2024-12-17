@@ -14,9 +14,25 @@ export const getTransactions=(userID)=>{
     }
     return TransactionSchema.find({userID})
 }
-export const deleteTransactions=(userID,tranid)=>{
-    if(!userID){
-        throw new Error("userId is required")
+
+export const deleteTransactions = async (userID, transactionID) => {
+    if (!userID || !transactionID) {
+      throw new Error("Both userID and transactionID are required");
     }
-    return TransactionSchema.deleteOne({tranid})
-}
+  
+    try {
+      const result = await TransactionSchema.deleteOne({
+        userID, // Match the user ID
+        _id: transactionID, // Match the transaction ID
+      });
+  
+      if (result.deletedCount === 0) {
+        return { status: "error", message: "Transaction not found or already deleted" };
+      }
+  
+      return { status: "success", message: "Transaction deleted successfully" };
+    } catch (error) {
+      throw new Error(`Failed to delete transaction: ${error.message}`);
+    }
+  };
+  

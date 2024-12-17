@@ -6,6 +6,7 @@
 // import CustomInput from "./CustomInput";// Import the reusable input component
 // import "../css/Signup.css";
 // import { useForm } from "../customHooks/useForm";
+// import { useUser } from '../context/UserContext';
 // const initialState={
 //   type:"",
 //   title:"",
@@ -14,7 +15,7 @@
 // }
 // const TransactionForm =  () => {
 //   const {form,setForm,handleOnChange}=useForm(initialState)
-
+//   const {getTransactionData}=useUser
 //   const handleOnSubmit= async (e)=>{
 //     e.preventDefault()
    
@@ -24,9 +25,14 @@
 //     })
 //     const {status,message}=await pending
 //     toast[status](message)
-//     status === 'success' && setForm(initialState)
+//     if (status === 'success'){  
+//       setForm(initialState)
+//     getTransactionData()
+   
+//     }
 //   }
   
+
 //   return (
 //     <div>
 //        <div className="signup-page">
@@ -97,13 +103,15 @@
 // }
 
 // export default TransactionForm
+
+
 import React, { useState } from "react";
 import { Container, Row, Col, Button, Card, Form } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { postNewTransaction } from "../helpers/axiosHelper";
 
 import CustomInput from "./CustomInput"; // Reusable input component
-import TransactionTable from "./TransactionTable"; // Transaction Table component
+import TransactionTable from "./TransactionTable"; // Import the Transaction Table component
 import "../css/Signup.css";
 import { useForm } from "../customHooks/useForm";
 import { useUser } from "../context/UserContext";
@@ -118,17 +126,14 @@ const initialState = {
 
 const TransactionForm = () => {
   const { form, setForm, handleOnChange } = useForm(initialState);
-  const [transactions, setTransactions] = useState([]); // State to track submitted transactions
-  const [loading, setLoading] = useState(false); // State to manage loading
-  const {getTransactionData}=useUser()
+  const {transactions, setTransactions,getTransactionData} = useUser(); // State to track submitted transactions
+
   // Handle form submission
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true); // Show loading state
 
     // Show a pending toast notification
     const pending = postNewTransaction(form);
-    // console.log(form)
     toast.promise(pending, {
       pending: "Please wait...",
     });
@@ -138,12 +143,10 @@ const TransactionForm = () => {
 
     // If successful, add the transaction to the table
     if (status === "success") {
-      setTransactions([...transactions, form]);
+      setTransactions(transactions);
       setForm(initialState); // Reset form inputs
       getTransactionData()
     }
-
-    setLoading(false); // Reset loading state
   };
 
   return (
@@ -162,26 +165,24 @@ const TransactionForm = () => {
                 <Form onSubmit={handleOnSubmit}>
                   {/* Dropdown for Type */}
                   <Form.Group controlId="formType" className="mb-3">
-                    {/* <Form.Label>Type</Form.Label> */}
+                    <Form.Label>Type</Form.Label>
                     <Form.Select
-                      className="custom-select"
                       name="type"
                       value={form.type}
-                      onChange={handleOnChange} // Ensure the handleOnChange is used for syncing state
+                      onChange={handleOnChange}
                     >
                       <option value="Income">Income</option>
                       <option value="Expenses">Expenses</option>
                     </Form.Select>
                   </Form.Group>
 
-                  {/* Custom Input Fields */}
                   <CustomInput
                     type="text"
                     placeholder="Title"
                     controlId="formTitle"
                     name="title"
-                    onChange={handleOnChange} // The onChange function is passed down
-                    value={form.title} // The value is controlled by the parent state
+                    onChange={handleOnChange}
+                    value={form.title}
                   />
                   <CustomInput
                     type="number"
@@ -200,14 +201,12 @@ const TransactionForm = () => {
                     value={form.tDate}
                   />
 
-                  {/* Submit Button with loading state */}
                   <Button
                     variant="primary"
                     type="submit"
                     className="w-100 signup-button"
-                    disabled={loading} // Disable button when loading
                   >
-                    {loading ? "Submitting..." : "Submit"}
+                    Submit
                   </Button>
                 </Form>
               </Card.Body>
@@ -215,12 +214,10 @@ const TransactionForm = () => {
           </Col>
         </Row>
 
-        {/* Transaction Table */}
-       
+        
       </Container>
     </div>
   );
 };
 
-export default TransactionForm;
-
+export default TransactionForm; 

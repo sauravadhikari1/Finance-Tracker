@@ -14,7 +14,7 @@ const getTransactionData= async()=>{
 
   return(
 
-    <UserContext.Provider value={{user,setUser,transactions, getTransactionData}}>
+    <UserContext.Provider value={{user,setUser,transactions, getTransactionData,setTransactions}}>
     { children }
 </UserContext.Provider>
   )

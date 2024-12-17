@@ -28,7 +28,7 @@ Content-Type: application/json
 ###Post new transaction
 POST  http://localhost:8000/api/v1/transactions
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAYS5jb20iLCJpYXQiOjE3MzQzMDk2MjIsImV4cCI6MTczNDM5NjAyMn0.P0WZ5ocDa37oIGfghlFjWa8L2iGSJslSLD2e-MptZ9w
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAYS5jb20iLCJpYXQiOjE3MzQ0MTY5MTksImV4cCI6MTczNDUwMzMxOX0._xEP5MaxW09QY9RkhZbRblY5V8UyYMYMDOoDRCYr6N0
 
 {
  "type":"income",

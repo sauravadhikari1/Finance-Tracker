@@ -53,7 +53,7 @@ router.get("/",async(req,res,next)=>{
 router.delete("/",async (req,res)=>{
     try {
     // get all transactions
-    const tranid =req.body.tranid
+    const {tranid} =req.body
     const {_id}=req.userInfo
     const result =await deleteTransactions(_id, tranid)
     
